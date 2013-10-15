@@ -48,7 +48,14 @@ public class MyActor extends Canvas {
         drawFace(graphics);
         drawLegs(graphics);
         drawTorso(graphics);
+        //drawName(graphics);
+       
 
+    }
+    
+    private void drawName(Graphics graphics){
+    graphics.setColor(Color.BLACK);
+     graphics.drawString(name, 20, 20);
     }
 
     private void drawFace(Graphics graphics) {
@@ -107,17 +114,34 @@ public class MyActor extends Canvas {
     public void setPantsColor(Color pants_color){
            this.pants_color=pants_color;
           this.repaint();
+          
     }
     
     public void setTorsoColor(Color torso_color){
            this.torso_color=torso_color;
           this.repaint();
+          
     }
     
     public void setEmotion(Expression emotion){
            this.emotion=emotion;
            this.repaint();
     }
+    
+      public void setActorName(String name){
+           this.name=name;
+           this.repaint();
+    }
+      
+       public String getActorName(){
+           return this.name; 
+    }
+
+      public void setScale(double x, double y){
+      x_scale=x;
+      y_scale=y;
+      this.repaint();
+      }
 
     public static void main(String[] args) {
 

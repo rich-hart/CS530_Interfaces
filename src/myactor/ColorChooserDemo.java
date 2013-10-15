@@ -44,14 +44,21 @@ import javax.swing.colorchooser.*;
 
 /* ColorChooserDemo.java requires no other files. */
 public class ColorChooserDemo extends JPanel
-                              implements ChangeListener {
+                              implements ChangeListener,ActionListener,DocumentListener  {
 
-    protected JColorChooser tcc;
+    protected JColorChooser pants_color_chooser,shirt_color_chooser;
+ 
     protected JLabel banner;
-
+    protected MyActor current_actor;
+    protected JButton happy, neutral, sad;
+    protected JTextField name_field;
+     
     public ColorChooserDemo() {
-        super(new BorderLayout());
-
+        
+        super(new GridLayout(2,0));
+        AbstractColorChooserPanel[] color_panels;
+        current_actor = new MyActor();
+        current_actor.setPreferredSize(new Dimension(200, 600));
         //Set up the banner at the top of the window
         banner = new JLabel("Welcome to the Tutorial Zone!",
                             JLabel.CENTER);
@@ -59,25 +66,104 @@ public class ColorChooserDemo extends JPanel
         banner.setBackground(Color.blue);
         banner.setOpaque(true);
         banner.setFont(new Font("SansSerif", Font.BOLD, 24));
-        banner.setPreferredSize(new Dimension(100, 65));
+        banner.setPreferredSize(new Dimension(200, 200));
 
         JPanel bannerPanel = new JPanel(new BorderLayout());
         bannerPanel.add(banner, BorderLayout.CENTER);
         bannerPanel.setBorder(BorderFactory.createTitledBorder("Banner"));
 
-        //Set up color chooser for setting text color
-        tcc = new JColorChooser(banner.getForeground());
-        tcc.getSelectionModel().addChangeListener(this);
-        tcc.setBorder(BorderFactory.createTitledBorder(
-                                             "Choose Text Color"));
+ 
+        
+                //Set up color chooser for setting pants
+        shirt_color_chooser = new JColorChooser(banner.getForeground());
+        shirt_color_chooser.setDragEnabled(true);
+        shirt_color_chooser.getSelectionModel().addChangeListener(this);
+        shirt_color_chooser.setBorder(BorderFactory.createTitledBorder(
+                                             "Shirt"));
+        //remove the preview panel
+        shirt_color_chooser.setPreviewPanel(new JPanel());
+        color_panels = shirt_color_chooser.getChooserPanels();
+        
+        //remove all color chooser panels except for one.
+        for(int i =0; i<color_panels.length;i++){
+            if(!(i==2)){
+            shirt_color_chooser.removeChooserPanel(color_panels[i]);
+            }
+        }
+        
+        add(shirt_color_chooser);
 
-        add(bannerPanel, BorderLayout.CENTER);
-        add(tcc, BorderLayout.PAGE_END);
+        
+               //Set up color chooser for setting pants
+        pants_color_chooser = new JColorChooser(banner.getForeground());
+        pants_color_chooser.getSelectionModel().addChangeListener(this);
+        pants_color_chooser.setBorder(BorderFactory.createTitledBorder(
+                                             "Pants"));
+        //remove the preview panel
+        pants_color_chooser.setPreviewPanel(new JPanel());
+       color_panels = pants_color_chooser.getChooserPanels();
+        
+        //remove all color chooser panels except for one.
+        for(int i =0; i<color_panels.length;i++){
+            if(!(i==2)){
+            pants_color_chooser.removeChooserPanel(color_panels[i]);
+            }
+        }
+        
+        add(pants_color_chooser);
+ 
+        
+        //add(bannerPanel);
+        
+        //add(new_actor);
+        
+        
+        
+        happy = new JButton("Happy");
+        happy.addActionListener(this);
+        happy.setPreferredSize(new Dimension(100,100));
+        neutral = new JButton("Neutral");
+        neutral.addActionListener(this);
+        neutral.setPreferredSize(new Dimension(100,100));
+        sad = new JButton("Sad");
+        sad.addActionListener(this);
+        sad.setPreferredSize(new Dimension(100,100));
+        //add(happy);
+        //add(neutral);
+        //add(sad);
+        
+        
+         //defining the name field
+        
+        name_field   = new JTextField(20);
+        name_field.setPreferredSize(new Dimension(100,30));
+        name_field.addActionListener(this);
+     name_field.getDocument().addDocumentListener(this);
+       // add(name_field);
+        
     }
-
+    public MyActor getActor(){
+    return current_actor;
+    }
+    
+    public void setActor(MyActor new_actor){
+    this.current_actor=new_actor;
+    }
+    
+    
     public void stateChanged(ChangeEvent e) {
-        Color newColor = tcc.getColor();
-        banner.setForeground(newColor);
+        Color newColor; 
+        
+        if(e.getSource().equals(pants_color_chooser.getSelectionModel())){
+          newColor  = pants_color_chooser.getColor();
+        current_actor.setPantsColor(newColor);
+        }
+        
+        if(e.getSource().equals(shirt_color_chooser.getSelectionModel())){
+             newColor  = shirt_color_chooser.getColor();
+        current_actor.setTorsoColor(newColor);
+        }
+       
     }
 
     /**
@@ -108,5 +194,40 @@ public class ColorChooserDemo extends JPanel
                 createAndShowGUI();
             }
         });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(happy)){
+        current_actor.setEmotion(Expression.HAPPY);
+        }
+        
+         if(e.getSource().equals(neutral)){
+        current_actor.setEmotion(Expression.NEUTRAL);
+        }
+         
+          if(e.getSource().equals(sad)){
+          current_actor.setEmotion(Expression.SAD);
+        }
+          
+          if(e.getSource().equals(name_field)){
+   
+          }
+    }
+    
+  
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+       current_actor.setActorName(name_field.getText());
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        current_actor.setActorName(name_field.getText());
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+       current_actor.setActorName(name_field.getText());
     }
 }

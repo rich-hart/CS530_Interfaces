@@ -52,6 +52,7 @@ public class ColorChooser_1 extends JPanel
     protected JLabel banner;
     protected MyActor new_actor;
     protected JFrame new_frame;
+    protected JTextField name_field;
    
     public ColorChooser_1() {
         super(new BorderLayout());
@@ -94,7 +95,7 @@ public class ColorChooser_1 extends JPanel
         add(pants_chooser, BorderLayout.PAGE_END);
         add(shirt_chooser, BorderLayout.PAGE_END); 
       
-        
+       
     }
     
     public void stateChanged(ChangeEvent e) {
