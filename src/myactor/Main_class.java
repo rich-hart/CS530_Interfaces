@@ -30,11 +30,11 @@ public class Main_class {
         double width = screenSize.getWidth();
         double height = screenSize.getHeight();
         MyActor actor_canvas = new MyActor(Expression.HAPPY,Color.BLACK,Color.BLUE);
-        JFrame actor_frame = new JFrame(actor_canvas.getActorName());
-        actor_frame.setLayout(new BorderLayout());
-       actor_canvas.setScale(.2, .4);
+        ActorFrame actor_frame = new ActorFrame();
+        actor_frame.setActor(actor_canvas);
+     
     
-       actor_frame.add(actor_canvas,BorderLayout.CENTER);
+      
       //  actor_frame.setSize((int) width / 2, (int) height / 2);
         
        // JPanel panel = new JPanel(new BorderLayout());
@@ -44,9 +44,7 @@ public class Main_class {
         
 //actor_frame.setContentPane(panel);
        // actor_frame.getContentPane().add(actor_canvas);
-        actor_frame.setVisible(true);
-        actor_frame.pack();
-  
+       
     
     
     
@@ -61,7 +59,7 @@ public class Main_class {
         
         
         ColorChooserDemo ColorPanel = new ColorChooserDemo();
-   ColorPanel.setActor(actor_canvas);
+        ColorPanel.setActor(actor_canvas);
         content_pane.add(ColorPanel);
         
 
@@ -71,6 +69,11 @@ public class Main_class {
         content_pane.add(buttons);
         
         
+        ActorNameField name_field = new ActorNameField();
+        name_field.setActor(actor_canvas);
+        name_field.setFrame(actor_frame);
+        
+        content_pane.add(name_field);
         frame.setContentPane(content_pane);
         frame.pack();
         frame.setVisible(true);

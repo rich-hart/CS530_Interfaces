@@ -39,7 +39,8 @@ public class MyActor extends Canvas {
         this.emotion=emotion;
         this.torso_color=torso_color;
         this.pants_color=pants_color;
-
+        
+        
     }
 
     public void paint(Graphics graphics) {
@@ -77,7 +78,7 @@ public class MyActor extends Canvas {
             case SAD:
                 graphics.drawOval((int)(125* x_scale), (int)(165* y_scale), (int)(50* x_scale), (int)(20* y_scale));
                 graphics.setColor(Color.WHITE);
-                graphics.fillRect((int)(125* x_scale), (int)(175* y_scale), (int)(50* x_scale), (int)(20* y_scale));
+                graphics.fillRect((int)(125* x_scale), (int)(175* y_scale), (int)(50* x_scale), (int)(18* y_scale));
                 break;
             case NEUTRAL:
                 graphics.drawLine((int)(125* x_scale), (int)(170* y_scale), (int)(175* x_scale), (int)(170* y_scale));

@@ -23,8 +23,9 @@ public class ActorFrame extends JFrame implements ComponentListener{
     double current_width;
     double current_height;
     ActorFrame(){
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         screen_width = screenSize.getWidth();
         screen_height = screenSize.getHeight();
         default_width =(int)screen_width/4;
@@ -33,14 +34,23 @@ public class ActorFrame extends JFrame implements ComponentListener{
         current_height=default_height;
         this.setSize((int)default_width, (int)default_height);
         current_actor= new MyActor();
-         this.setTitle(current_actor.getActorName());
+        this.setTitle(current_actor.getActorName());
         this.addComponentListener(this);
         this.add(current_actor);
         this.setVisible(true);
+        
     }
     
       public static void main(String[] args) {
       new ActorFrame();
+      }
+      
+      public void setActor(MyActor new_actor){
+          this.remove(current_actor);
+          this.add(new_actor);
+      current_actor=new_actor;
+      
+      this.repaint();
       }
 
     @Override
@@ -50,11 +60,20 @@ public class ActorFrame extends JFrame implements ComponentListener{
        current_height=this.getSize().getHeight();
        
        current_actor.setScale(current_width/default_width, current_height/default_height);
-       
+       this.repaint();
+    }
+    
+    public int getActorWidthSize(){
+    return (int) this.getSize().getWidth();
+    }
+    
+    
+     public int getActorHeightSize(){
+    return (int) this.getSize().getHeight();
     }
     
     public void UpdateFrameLable(String new_name){
-    this.setTitle(current_actor.getActorName());
+    this.setTitle(new_name);
     }
 
     @Override

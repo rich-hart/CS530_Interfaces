@@ -19,7 +19,8 @@ public class FaceButtons extends JPanel implements ActionListener {
     protected JButton happy, neutral, sad;
     
     FaceButtons(){
-     happy = new JButton("Happy");
+        
+        happy = new JButton("Happy");
         happy.addActionListener(this);
         happy.setPreferredSize(new Dimension(100,100));
         neutral = new JButton("Neutral");
