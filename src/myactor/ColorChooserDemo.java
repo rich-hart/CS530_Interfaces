@@ -199,15 +199,15 @@ public class ColorChooserDemo extends JPanel
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(happy)){
-        current_actor.setEmotion(Expression.HAPPY);
+       // current_actor.setEmotion(Expression.HAPPY);
         }
         
          if(e.getSource().equals(neutral)){
-        current_actor.setEmotion(Expression.NEUTRAL);
+      //  current_actor.setEmotion(Expression.NEUTRAL);
         }
          
           if(e.getSource().equals(sad)){
-          current_actor.setEmotion(Expression.SAD);
+        //  current_actor.setEmotion(Expression.SAD);
         }
           
           if(e.getSource().equals(name_field)){

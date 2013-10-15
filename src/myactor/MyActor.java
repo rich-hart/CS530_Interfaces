@@ -149,10 +149,14 @@ public class MyActor extends Canvas {
         double width = screenSize.getWidth();
         double height = screenSize.getHeight();
         MyActor canvas = new MyActor(Expression.HAPPY,Color.BLACK,Color.BLUE);
+   
+        canvas.setPreferredSize(new Dimension(100,100));
         JFrame frame = new JFrame();
-        frame.setSize((int) width / 2, (int) height / 2);
+        frame.setLayout(new BorderLayout());
+        //frame.setSize((int) width / 2, (int) height / 2);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(canvas);
+        frame.add(canvas);
+        frame.pack();
         frame.setVisible(true);
         
     }

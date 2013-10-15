@@ -34,14 +34,7 @@ public class FaceButtons extends JPanel implements ActionListener {
     
     }
     
-    FaceButtons(MyActor new_actor){
-        super();
-        setActor(new_actor);
-        //add(happy);
-        //add(neutral);
-        //add(sad);
-    
-    }
+   
 
     public MyActor getActor(){
     return current_actor;
