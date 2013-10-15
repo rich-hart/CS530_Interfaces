@@ -28,6 +28,7 @@ public class MyActor extends Canvas {
         emotion=Expression.HAPPY;
         torso_color=Color.YELLOW;
         pants_color=Color.BLUE;
+       
 
     }
     

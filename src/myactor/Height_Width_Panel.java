@@ -48,12 +48,17 @@ public class Height_Width_Panel extends JPanel implements ComponentListener, Act
         width_field.setText("" + current_width_field);
         current_height_field = ((int) actor_frame.getSize().getHeight());
         height_field.setText("" + current_height_field);
-
+        actor_frame.addComponentListener(this);
         width_field.addActionListener(this);
         height_field.addActionListener(this);
+       
+  
 
-        actor_frame.addComponentListener(this);
-
+    }
+    
+    public  void setActorFrame(ActorFrame actor_frame){
+         this.actor_frame= actor_frame;
+         actor_frame.addComponentListener(this);
     }
 
     public static void main(String[] args) {

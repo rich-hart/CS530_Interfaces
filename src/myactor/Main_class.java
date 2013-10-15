@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -74,6 +76,11 @@ public class Main_class {
         name_field.setFrame(actor_frame);
         
         content_pane.add(name_field);
+        
+        Height_Width_Panel hwp = new Height_Width_Panel();
+        hwp.setActorFrame(actor_frame);
+        content_pane.add(hwp);
+        
         frame.setContentPane(content_pane);
         frame.pack();
         frame.setVisible(true);
@@ -90,4 +97,6 @@ public class Main_class {
             }
         });
     }
+
+   
 }
