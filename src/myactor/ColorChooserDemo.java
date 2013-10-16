@@ -38,6 +38,8 @@ package myactor;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.colorchooser.*;
@@ -86,8 +88,12 @@ public class ColorChooserDemo extends JPanel
         
         //remove all color chooser panels except for one.
         for(int i =0; i<color_panels.length;i++){
+              AbstractColorChooserPanel temp_panel =  color_panels[i];
             if(!(i==2)){
-            shirt_color_chooser.removeChooserPanel(color_panels[i]);
+            shirt_color_chooser.removeChooserPanel(temp_panel);
+            } else{
+             Component random_comp =  temp_panel.getComponent(0);
+             random_comp.setVisible(false);
             }
         }
         
@@ -105,11 +111,15 @@ public class ColorChooserDemo extends JPanel
         
         //remove all color chooser panels except for one.
         for(int i =0; i<color_panels.length;i++){
+               AbstractColorChooserPanel temp_panel =  color_panels[i];
             if(!(i==2)){
-            pants_color_chooser.removeChooserPanel(color_panels[i]);
+            pants_color_chooser.removeChooserPanel(temp_panel);
+            } else{
+             Component random_comp =  temp_panel.getComponent(0);
+             random_comp.setVisible(false);
             }
         }
-        
+
         add(pants_color_chooser);
  
         
@@ -145,7 +155,8 @@ public class ColorChooserDemo extends JPanel
     public MyActor getActor(){
     return current_actor;
     }
-    
+   
+
     public void setActor(MyActor new_actor){
     this.current_actor=new_actor;
     }

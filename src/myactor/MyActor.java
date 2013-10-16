@@ -87,6 +87,9 @@ public  class MyActor extends Canvas {
             case NEUTRAL:
                 graphics.drawLine((int)(125* x_scale), (int)(170* y_scale), (int)(175* x_scale), (int)(170* y_scale));
                 break;
+                
+                
+               
 
         }
 
