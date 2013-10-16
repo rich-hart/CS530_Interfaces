@@ -22,6 +22,8 @@ import javax.swing.JPanel;
  * @author richardhart
  */
 public class Main_class {
+    
+    
       private static void createAndShowGUI() {
      
         
@@ -97,6 +99,8 @@ public class Main_class {
             }
         });
     }
+
+ 
 
    
 }

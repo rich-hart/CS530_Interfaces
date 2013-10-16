@@ -5,9 +5,10 @@
 package myactor;
 
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
-public class MyActor extends Canvas {
+public  class MyActor extends Canvas {
     
     String name = "Bob";
     double screen_width;
@@ -19,8 +20,10 @@ public class MyActor extends Canvas {
     Color pants_color;
     
     
+    java.util.List<HelloListener> listeners = new ArrayList<HelloListener>();
+    
 
-    public MyActor() {
+    public  MyActor() {
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         screen_width = screenSize.getWidth();
@@ -51,7 +54,7 @@ public class MyActor extends Canvas {
         drawLegs(graphics);
         drawTorso(graphics);
         //drawName(graphics);
-       
+       sayHello();
 
     }
     
@@ -132,7 +135,7 @@ public class MyActor extends Canvas {
     
       public void setActorName(String name){
            this.name=name;
-           this.repaint();
+            sayHello();
     }
       
        public String getActorName(){
@@ -145,6 +148,22 @@ public class MyActor extends Canvas {
       this.repaint();
       }
 
+       public void addListener(HelloListener toAdd) {
+        listeners.add(toAdd);
+    }
+       
+         public void removeListener(HelloListener toAdd) {
+        listeners.remove(toAdd);
+    }
+
+    public void sayHello() {
+        System.out.println("MyActor: Hello!!");
+
+        // Notify everybody that may be interested.
+        for (HelloListener hl : listeners)
+            hl.someoneSaidHello();
+    }
+      
     public static void main(String[] args) {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

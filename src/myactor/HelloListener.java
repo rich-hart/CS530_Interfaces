@@ -26,8 +26,9 @@ class Initiater {
         System.out.println("Hello!!");
 
         // Notify everybody that may be interested.
-        for (HelloListener hl : listeners)
+        for (HelloListener hl : listeners){
             hl.someoneSaidHello();
+        }
     }
 }
 

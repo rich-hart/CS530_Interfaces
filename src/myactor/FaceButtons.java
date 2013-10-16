@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  * @author richardhart
  */
-public class FaceButtons extends JPanel implements ActionListener {
+public class FaceButtons extends JPanel implements ActionListener, HelloListener {
     protected MyActor current_actor;
     protected JButton happy, neutral, sad;
     
@@ -42,7 +42,8 @@ public class FaceButtons extends JPanel implements ActionListener {
     }
     
     public void setActor(MyActor new_actor){
-    this.current_actor=new_actor;
+    current_actor=new_actor;
+     current_actor.addListener(this);
     }
     
     
@@ -61,6 +62,11 @@ public class FaceButtons extends JPanel implements ActionListener {
         }
           
          
+    }
+
+    @Override
+    public void someoneSaidHello() {
+         System.out.println("FaceButtons: Hello there...");
     }
     
 }
